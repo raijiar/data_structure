@@ -50,6 +50,8 @@ Status ListInsert(List *L, int i, ElemType e);
 Status ListDelete(List *L, int i, ElemType *e);
 
 //对线性表中的每个元素调用Visit函数
-Status ListTraverse(List L, void(Visit)(List));
+Status ListTraverse(List L, void(Visit)(ElemType));
 
+//线性表排序
+void ListSort(List *L);
 #endif

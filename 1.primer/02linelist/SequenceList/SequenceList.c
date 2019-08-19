@@ -68,7 +68,7 @@ Status ListInsert(List *L, int i, ElemType elem)
     }
     q = &(L->elem[i - 1]);
     for (p = &(L->elem[L->length - 1]); p >= q; --p) {
-        *(p + 1) = *q;
+        *(p + 1) = *p;
     }
     *q = elem;
     L->length ++;
@@ -118,24 +118,49 @@ Status NextElem(List L, ElemType cur_e, ElemType *next_e)
 
 Status ListDelete(List *L, int i, ElemType *e)
 {
-    int *p, *q;
+    ElemType *p, *q;
     if (i < 1 || i > L->length) {
         return ERROR;
     }
     *e = L->elem[i - 1];
-    p = &(L->elem[i - 1]);
-    q = L->elem + L->length - 1;
+    p = &L->elem[i - 1];
+    q = &L->elem[L->length - 1];
 
-    for (++p; q <= p; ++p)
+    for (++p; p <= q; ++p)
         *(p - 1) = *p;
 
     L->length--;
     return OK;
 }
 
-Status ListTraverse(List L, void(Visit)(List))
+Status ListTraverse(List L, void(Visit)(ElemType))
 {
-
+    for (int i = 0; i <= L.length - 1; i++) {
+        printf("元素序号:%d\t", i + 1);
+        Visit(L.elem[i]);
+    }
+    return OK;
 }
 
+void ListSort(List *L)
+{
+    Status tag;
+
+    for (int i = L->length - 1; i >= 1; i--) {
+        tag = FALSE;
+        for (int j = 1; j <= i; j++) {
+            if (L->elem[i] < L->elem[i - j]) {
+                ElemType high = L->elem[i - j];
+                L->elem[i - j] = L->elem[i];
+                L->elem[i] = high;
+                tag =TRUE;
+            }
+        }
+        if (!tag)
+            break;
+    }    
+}
 #endif
+
+
+
