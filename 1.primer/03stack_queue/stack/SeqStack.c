@@ -14,14 +14,14 @@ Status InitStack(SqStack *S)
 }
 
 Status DestroyStack(SqStack *S)
-{
-    free(S->base);
+{   
+    /*free(S->base);
     S->base = NULL;
-    S->top = NULL;
-
+    S->top = S->base;
     S->stacksize = 0;
-
-    return 0;
+    */
+    free(S);
+    return OK;
     
 }
 

@@ -1,21 +1,22 @@
-#ifndef LINKLIST_H
-#define LINKLIST_H
+#ifndef SLINKLIST_H
+#define SLINKLIST_H
 
 #include<stdio.h>
 #include<stdlib.h>
 #include "../../01preface/Status.h"
 
-typedef int ElemType;
-typedef struct LNode Node;
+#define MAXSIZE 100
 
-typedef struct LNode {
+typedef int ElemType;
+
+typedef struct  {
     ElemType data;
-    Node *next;
-} Node, LinkList;
+    int cur;
+} component, SLinkList[MAXSIZE];
 
 
 //线性表初始化
-Status InitList(LinkList *L);
+Status InitList(LinkList *space);
 
 //销毁线性表
 void DestoryList(LinkList *L);

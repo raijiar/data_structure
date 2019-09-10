@@ -54,4 +54,7 @@ Status ListTraverse(List L, void(Visit)(ElemType));
 
 //线性表排序
 void ListSort(List *L);
+
+//线性表合并
+Status ListUnion(List *L1, List L2);
 #endif
